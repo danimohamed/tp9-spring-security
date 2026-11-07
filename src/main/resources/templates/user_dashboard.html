@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Espace Utilisateur</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page">
+    <h2>Espace Utilisateur</h2>
+    <p>Zone securisee reservee au role <strong>USER</strong>.</p>
+
+    <p>
+        Connecte en tant que <strong th:text="${#authentication.name}">user</strong>
+        <span th:text="${#authentication.authorities}"></span>
+    </p>
+
+    <div class="links">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/admin/dashboard}">Espace Administrateur</a>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Se deconnecter</button>
+    </form>
+</div>
+</body>
+</html>

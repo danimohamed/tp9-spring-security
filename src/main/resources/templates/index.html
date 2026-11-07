@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Spring Security</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="page">
+    <h2>Bienvenue sur l'application publique</h2>
+    <p>Cette page est accessible a tous, sans authentification.</p>
+
+    <div class="links">
+        <a th:href="@{/user/dashboard}">Espace Utilisateur</a>
+        <a th:href="@{/admin/dashboard}">Espace Administrateur</a>
+    </div>
+
+    <div class="session" th:if="${#authorization != null}">
+        <p th:if="${#authorization.expression('isAuthenticated()')}">
+            Connecte en tant que <strong th:text="${#authentication.name}">anonyme</strong>
+            <span th:text="${#authentication.authorities}"></span>
+        </p>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Se deconnecter</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
